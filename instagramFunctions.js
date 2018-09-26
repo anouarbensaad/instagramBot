@@ -489,7 +489,7 @@ console.log("Login Results : \n\n PK         : " +res.logged_in_user.pk+
     "\n ProfilePic : "+res.logged_in_user.profile_pic_url+
     "\n Status     : "+res.status+
     "\n CSRFToken  : "+ x.token +
-    "\n Cookie     : "+x.cookies
+    "\n Cookie     : "+x.cookies.sessionid
 
     )
 },
