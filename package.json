@@ -1,0 +1,17 @@
+{
+  "name": "new_igapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bensaadanouar",
+  "license": "ISC",
+  "devDependencies": {
+    "crypto": "^1.0.1",
+    "request": "^2.88.0",
+    "utf8": "^3.0.0",
+    "uuid": "^3.3.2"
+  }
+}
