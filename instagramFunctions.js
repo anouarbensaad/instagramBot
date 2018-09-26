@@ -470,10 +470,8 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
 	this.cookieJar = request.jar()
 	
 	this.uuid = this.genUUID(true)
-    var cookie = this._parseCookie()
 }
-//FUNCTION CALLS
-//{P.P}
+
 
 var x = new InstagramAuth('botig.4','25614541ab', 
 
@@ -481,7 +479,20 @@ var x = new InstagramAuth('botig.4','25614541ab',
 
     (o) => {
 
+
 var res = JSON.parse(o.response)
+
+/*
+console.log(JSON.stringify(x.cookies))
+_______________________COOKIE_STRUCTURE________________________
+{ rur: 'ATN',
+  mid: 'W6vU3AABAAE9-0vdwIeWOBGM9GbU',
+  mcd: '3',
+  csrftoken: 'peE0v75EVtq6pekHq7Q0mqoYFTKCtICH',
+  ds_user: 'botig.4',
+  ds_user_id: '8605548380',
+  sessionid: 'IGSCee2eafdbf46392cc3eb626665161c0a93e3df65927756dd8165d038f8471dadc%3AZyjeO1Q6RfqoUdxhQavCqwXnQwyNRkLM%3A%7B%22_auth_user_id%22%3A8605548380%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%228605548380%3AHb4GSl5oM3O4LzMGobiUK9eStCtKWIBu%3A739ff3f92e576c1a4e60aa4dee35f446098f61cb4d9859d9800fb78e38e8313a%22%2C%22last_refreshed%22%3A1537987805.1021447182%7D' }
+*/
 
 console.log("Login Results : \n\n PK         : " +res.logged_in_user.pk+ 
     "\n Name       : " +res.logged_in_user.full_name+
@@ -489,9 +500,11 @@ console.log("Login Results : \n\n PK         : " +res.logged_in_user.pk+
     "\n ProfilePic : "+res.logged_in_user.profile_pic_url+
     "\n Status     : "+res.status+
     "\n CSRFToken  : "+ x.token +
-    "\n Cookie     : "+x.cookies.sessionid
-
+    "\n Cookie     : "+"rur="+x.cookies.rur+";"+"mid="+x.cookies.mid+";"+"mcd="+x.cookies.mcd+";"+"csrftoken="+x.cookies.csrftoken
+                    +";"+"ds_user="+x.cookies.ds_user+";"+"ds_user_id="+x.cookies.ds_user_id+";"+"sessionid="+x.cookies.sessionid+"\n\n\n\n"
     )
+
+
 },
 
 
@@ -534,7 +547,7 @@ setTimeout(function() {
                     //console.log("media_comment : "+comm.comments.pk)
                     console.log("The Number Of Comments Is : "+comment.comment_count+"\n")
                     var usercom = JSON.parse(comm)
-                    console.log(usercom)
+         //           console.log(usercom)
                 }
             )
             x.getMedialikers('1228228345139660350_2222631888',null ,(likk) =>
