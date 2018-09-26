@@ -472,7 +472,8 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
 	this.uuid = this.genUUID(true)
     var cookie = this._parseCookie()
 }
-
+//FUNCTION CALLS
+//{P.P}
 
 var x = new InstagramAuth('botig.4','25614541ab', 
 
