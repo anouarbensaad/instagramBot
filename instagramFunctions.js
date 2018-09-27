@@ -3,6 +3,118 @@ var request = require('request');
 var uuidv1 = require('uuid/v1');
 var crypto = require('crypto')
 var utf8 = require('utf8')
+var fs = require('fs')
+function InstagramAPI(){
+    if (!(this instanceof InstagramAPI))
+        return new InstagramAPI()
+
+    var API_URL = 'https://api.instagram.com/'
+    
+    this.cookieJar = request.jar()
+
+    this._sendRequest = function(endpoint, postData = null, callback) {
+        if (postData != null) {
+            request.post({
+                    url: API_URL + endpoint,
+                    jar: this.cookieJar,
+                    form: postData
+                },
+                (err, response, body) => {
+                    if (err)
+                        callback(null)
+                    else
+                        callback(body)
+                }
+            )
+        } else {
+            request.get({
+                    url: API_URL + endpoint,
+                    jar: this.cookieJar
+                },
+                (err, response, body) => {
+                    if (err)
+                        callback(null)
+                    else {
+                        callback(body)
+                    }
+                }
+            )
+        }
+    }
+
+        /*
+**************************************************************************
+This Function getMediaID , Send a URL ---> Get ID Media
+
+*/
+
+    this.getMedia_id = function(instaUrl, callback) {
+            var endpoint = 'oembed/?callback=&url='
+            
+            endpoint += encodeURIComponent(instaUrl)
+
+            this._sendRequest(endpoint, null,
+                (data) => {
+                    try{
+                        //console.log(data)
+                        var omedia = JSON.parse(data)
+                        var mediaid=omedia.media_id
+                        callback({
+                            success: true,
+                            response: {'media_id': mediaid}
+                        })                      
+                    }catch (err) {
+
+                        callback({
+                            success: false,
+                            response: 'Cannot get media_id for this URL `'+instaUrl+'`' 
+                        })
+                    }
+                }
+                
+            )
+    }
+
+
+
+
+    this.getMedia_pic = function(instaUrl, callback) {
+            var endpoint = 'oembed/?callback=&url='
+            
+            endpoint += encodeURIComponent(instaUrl)
+
+            this._sendRequest(endpoint, null,
+                (data) => {
+                    try{
+                        //console.log(data)
+                        var omedia = JSON.parse(data)
+                        var mediapic=omedia.thumbnail_url
+                        callback({
+                            success: true,
+                            response: {'media_pic': mediapic}
+                        })                      
+                    }catch (err) {
+
+                        callback({
+                            success: false,
+                            response: 'Cannot get media_picture for this URL `'+instaUrl+'`' 
+                        })
+                    }
+                }
+                
+            )
+    }
+
+
+
+
+
+
+
+}
+var InstagramAPI = new InstagramAPI()
+
+
 
 
 function InstagramAuth(user, pwd, login_cbk=null, logout_cbk=null){
@@ -57,6 +169,16 @@ This Function To Parse Cookies to object,
         }
         return cookiesMap
     }
+
+/*
+**************************************************************************
+This Function To Parse Cookies to object, 
+
+*/
+
+    this.getCookiesAsString = function (){
+        return this.cookieJar.getCookieString(API_URL).split("; ")
+}
 
 /*
 **************************************************************************
@@ -330,16 +452,9 @@ This Function GetUserFollowers , to get all followings from [USERID]
             callback(null)
     }
 
-/*
-**************************************************************************
-This Function getMediaID , Send a URL ---> Get ID Media
 
-*/
 
-     this.getMediaID = function (media_id, maxid = null, callback) {
     
-
-    }
 
 /*
 **************************************************************************
@@ -446,6 +561,11 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
             })
     }
 
+/*
+**************************************************************************
+This Function Unfollow  , Post The Media URL & Get All Comments From This Media
+
+*/
         this.follow = function (userId, callback) {
         var data = JSON.stringify({
             '_uuid': this.uuid,
@@ -460,6 +580,76 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
 
             })
     }
+
+
+    /*
+**************************************************************************
+This Function getUserIDbyLogin  , Search Person With Login & Return ---> PK
+
+*/
+/*
+
+    this.getUserIDbyLogin = function (userName, callback) {
+
+        if (this.isLoggedIn) {
+            var endpoint = '/users/search/?q='
+            endpoint += encodeURIComponent(userName)
+            this._sendRequest(endpoint, null,
+                (data) => {
+                    console.log(data)
+                    try{
+                      //  console.log(data)
+                        var usersearch = JSON.parse(data)
+                        console.log(usersearch)
+                        callback({
+                            success: true,
+                            response: {'user search': mediapic}
+                        })                      
+                    }catch (err) {
+
+                        callback({
+                            success: false,
+                        //    response: 'Cannot get media_picture for this URL `'+instaUrl+'`' 
+                            })
+                        }
+                    }
+                )
+            }
+        }
+
+*/
+
+
+    this.getUserIDbyLogin = function(userName, callback) {
+        if (this.isLoggedIn) {
+            var endpoint = 'users/search/?q='
+            
+            endpoint += encodeURIComponent(userName)
+
+            this._sendRequest(endpoint, null,
+                (data) => {
+                    try{
+                        //console.log(data)
+                        var usearch = JSON.parse(data)
+                        //var mediaid=omedia.media_id
+                        callback({
+                            success: true,
+                        //    response: {'media_id': mediaid}
+                        })                      
+                    }catch (err) {
+
+                        callback({
+                            success: false,
+                        //    response: 'Cannot get media_id for this URL `'+instaUrl+'`' 
+                        })
+                    }
+                }
+                
+            )
+    }
+}
+
+
 
 
 	this.username = user
@@ -534,23 +724,27 @@ function get_user_followers(x, maxid, f)
 
 x.login()
 
-
-
-
 setTimeout(function() {
     if (x.isLoggedIn) 
         {
-            x.getMediaComments('1228228345139660350_2222631888',null, (comm) =>
+            /*x.getMediaComments(url_to_media,null, (comm) =>
                
                 {
                     var comment = JSON.parse(comm)
                     //console.log("media_comment : "+comm.comments.pk)
                     console.log("The Number Of Comments Is : "+comment.comment_count+"\n")
                     var usercom = JSON.parse(comm)
-         //           console.log(usercom)
+                   console.log(usercom)
                 }
-            )
+            )*/
+
+            x.getUserIDbyLogin('tigbeats' , (userid) => {
+
+                console.log(userid)
+            })
+            
             x.getMedialikers('1228228345139660350_2222631888',null ,(likk) =>
+          
                 {
                 //    console.log("media_likes : "+likk)
                 //   var likees = JSON.parse(likk)
@@ -563,17 +757,33 @@ setTimeout(function() {
 
 
         setTimeout(function() {
-        }, 10000)
+        }, 5000)
     } 
-}, 5000)
+}, 10000)
 
+x.getUserIDbyLogin('tigbeats' , (userid) => {
 
+                console.log(userid)
+            })
+
+InstagramAPI.getMedia_id('https://www.instagram.com/p/BoKxiGrhWQ5/?taken-by=instagram', (o) => {
+
+    if (o.success){
+        console.log('Media ID : '+o.response.media_id)
+    }
+})
+
+InstagramAPI.getMedia_pic('https://www.instagram.com/p/BoKxiGrhWQ5/?taken-by=instagram', (o) => {
+
+    if (o.success){
+        console.log('Media Picture : '+o.response.thumbnail_url)
+    }
+})
 
 
 
 
 /*
-
 
 setTimeout(function() {
     if (x.isLoggedIn) 
