@@ -1,9 +1,35 @@
-var http = require('http');
-var request = require('request');
-var uuidv1 = require('uuid/v1');
+var http = require('http')
+var request = require('request')
+var uuidv1 = require('uuid/v1')
 var crypto = require('crypto')
 var utf8 = require('utf8')
 var fs = require('fs')
+var mysql = require('mysql')
+
+ /*
+**************************************************************************
+DB Connection ..
+
+*/
+
+var con = mysql.createConnection({
+  host: "*********",
+  user: "*********",
+  password: "**********",
+  database: "************"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("DATABASE Connected ...");
+});
+
+ /*
+**************************************************************************
+Instagram use API URL = http://api.instagram.com/..
+
+*/
+
 function InstagramAPI(){
     if (!(this instanceof InstagramAPI))
         return new InstagramAPI()
@@ -116,8 +142,13 @@ var InstagramAPI = new InstagramAPI()
 
 
 
+ /*
+**************************************************************************
+InstagramAuth use API URL = http://i.instagram.com/..
 
-function InstagramAuth(user, pwd, login_cbk=null, logout_cbk=null){
+*/
+
+function InstagramAuth(user, pwd, login_cbk=null, logout_callback=null){
 	if (!(this instanceof InstagramAuth))
 		return new InstagramAuth(user, pwd, login_cbk, logout_cbk)
 	var API_URL = 'https://i.instagram.com/api/v1/'
@@ -151,7 +182,7 @@ function InstagramAuth(user, pwd, login_cbk=null, logout_cbk=null){
 	}
  
  	this.login_callback = login_cbk
- 	this.logout_callback = logout_cbk
+ 	//this.logout_callback = logout_cbk
 
 /*
 **************************************************************************
@@ -478,7 +509,10 @@ This Function getMediaLikers , Get 5 Posts From Person ID & Liked-it
      this.getMedialikers = function (media_id, maxid = null, callback) {
         if (this.isLoggedIn) {
             var endpoint = 'media/' + media_id + '/likers/'
-            var query = {}
+            var query = {
+                'ig_sig_key_version': SIG_KEY_VERSION,
+                'rank_token': userid+'_'+this.uuid
+            }
             if (maxid)
             {
                 query['max_id'] = maxid
@@ -497,7 +531,7 @@ This Function getMediaLikers , Get 5 Posts From Person ID & Liked-it
 *************************************************************************
 */
 
-this.getAPFromLocation = function (media_id, maxid = null, callback) {
+this.LocationSearch = function (media_id, maxid = null, callback) {
         if (this.isLoggedIn) {
             var endpoint = 'media/' + media_id + '/likers/'
             var query = {}
@@ -541,6 +575,65 @@ This Function getMediaComments , Post The Media URL & Get All Comments From This
     }
 
 /*
+*/
+
+this.story_viewers = function (story_id, maxid = null, callback) {
+        if (this.isLoggedIn) {
+            var endpoint = 'media/' + story_id + '/list_reel_media_viewer/'
+            var query = {}
+            if (maxid)
+            {
+                query['max_id'] = maxid
+                endpoint += '?'+encodeURIComponent(query)
+            }
+            
+            this._sendRequest(endpoint, null,
+                (data) =>
+                callback(data)
+            )
+        } else
+            callback(null)
+    }
+
+/*
+***************************************************************************
+This Function DoLike , Get Media ID ---- > Liked
+*/
+
+ this.liked = function (media_id, callback) {
+       
+        var data = JSON.stringify({
+            '_uuid': this.uuid,
+            '_uid': this.userid,
+            'media_id': media_id,
+            '_csrftoken': this.token
+        })
+       
+        return this._sendRequest('media/' + media_id + '/like/', this.generateSignature(data),
+            (data) => {callback(data)})
+    }
+
+/*
+***************************************************************************
+This Function DoLike , Get Media ID ---- > Liked
+*/
+
+ this.unliked = function (media_id, callback) {
+       
+        var data = JSON.stringify({
+            '_uuid': this.uuid,
+            '_uid': this.userid,
+            'media_id': media_id,
+            '_csrftoken': this.token
+        })
+       
+        return this._sendRequest('media/' + media_id + '/unlike/', this.generateSignature(data),
+            (data) => {callback(data)})
+    }
+
+
+
+/*
 **************************************************************************
 This Function Unfollow  , Post The Media URL & Get All Comments From This Media
 
@@ -554,11 +647,7 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
             '_csrftoken': this.token
         })
         return this._sendRequest('friendships/destroy/' + userId + '/', this.generateSignature(data),
-            (data) => {
-
-                callback(data)
-
-            })
+            (data) => {callback(data)})
     }
 
 /*
@@ -587,70 +676,71 @@ This Function Unfollow  , Post The Media URL & Get All Comments From This Media
 This Function getUserIDbyLogin  , Search Person With Login & Return ---> PK
 
 */
-/*
-
-    this.getUserIDbyLogin = function (userName, callback) {
-
-        if (this.isLoggedIn) {
-            var endpoint = '/users/search/?q='
-            endpoint += encodeURIComponent(userName)
-            this._sendRequest(endpoint, null,
-                (data) => {
-                    console.log(data)
-                    try{
-                      //  console.log(data)
-                        var usersearch = JSON.parse(data)
-                        console.log(usersearch)
-                        callback({
-                            success: true,
-                            response: {'user search': mediapic}
-                        })                      
-                    }catch (err) {
-
-                        callback({
-                            success: false,
-                        //    response: 'Cannot get media_picture for this URL `'+instaUrl+'`' 
-                            })
-                        }
-                    }
-                )
-            }
-        }
-
-*/
 
 
-    this.getUserIDbyLogin = function(userName, callback) {
+this.getUserIDbyLogin = function(userName, callback) {
         if (this.isLoggedIn) {
             var endpoint = 'users/search/?q='
-            
-            endpoint += encodeURIComponent(userName)
+             endpoint += encodeURIComponent(userName)
 
             this._sendRequest(endpoint, null,
                 (data) => {
                     try{
-                        //console.log(data)
-                        var usearch = JSON.parse(data)
-                        //var mediaid=omedia.media_id
+                        var udata = JSON.parse(data)
                         callback({
                             success: true,
-                        //    response: {'media_id': mediaid}
+                            response: data
                         })                      
                     }catch (err) {
 
                         callback({
                             success: false,
-                        //    response: 'Cannot get media_id for this URL `'+instaUrl+'`' 
+                            response: 'Cannot get the user id from `'+userName+'`' 
                         })
                     }
                 }
                 
             )
-    }
-}
+    }}
+
+    /*
+**************************************************************************
+This Function getUserIDbyLogin  , Search Person With Login & Return ---> PK
+
+*/
+    this.getUserFeed = function(userid, callback) {
+            if (this.isLoggedIn) {
+            var endpoint = 'feed/user/' + userid + '/'
+/*MEDIA TYPE :
+    1 #: Photo Type 
+    2 #: Video Type 
+    8 #: Carousel //ALBUM TYPE
+  
+  */      
+        this._sendRequest(endpoint, null,
+                (data) => {
+                    try{
+                        var udata = JSON.parse(data)
+                        callback({
+                            success: true,
+                            response: data
+                        })                      
+                    }catch (err) {
+
+                        callback({
+                            success: false,
+                            response: 'Cannot get the user posts from `'+userid+'`' 
+                        })
+                    }
+                }
+                
+            )
+    }}
 
 
-
+/*
+VAR USED
+*/
 
 	this.username = user
 	this.password = pwd
@@ -663,178 +753,128 @@ This Function getUserIDbyLogin  , Search Person With Login & Return ---> PK
 }
 
 
-var x = new InstagramAuth('botig.4','25614541ab', 
+var x = new InstagramAuth('#USERNAME*******','#PASSWORD*******', 
 
 //Login Callback 
 
     (o) => {
 
+var cookiemanual = "rur="+x.cookies.rur+";"+"mid="+x.cookies.mid+";"+"mcd="+x.cookies.mcd+";"+"csrftoken="+x.cookies.csrftoken+";"+"ds_user="+x.cookies.ds_user+";"+"ds_user_id="+x.cookies.ds_user_id+";"+"sessionid="+x.cookies.sessionid
+var rurcki = x.cookies.rur
 
 var res = JSON.parse(o.response)
-
-/*
-console.log(JSON.stringify(x.cookies))
-_______________________COOKIE_STRUCTURE________________________
-{ rur: 'ATN',
-  mid: 'W6vU3AABAAE9-0vdwIeWOBGM9GbU',
-  mcd: '3',
-  csrftoken: 'peE0v75EVtq6pekHq7Q0mqoYFTKCtICH',
-  ds_user: 'botig.4',
-  ds_user_id: '8605548380',
-  sessionid: 'IGSCee2eafdbf46392cc3eb626665161c0a93e3df65927756dd8165d038f8471dadc%3AZyjeO1Q6RfqoUdxhQavCqwXnQwyNRkLM%3A%7B%22_auth_user_id%22%3A8605548380%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%228605548380%3AHb4GSl5oM3O4LzMGobiUK9eStCtKWIBu%3A739ff3f92e576c1a4e60aa4dee35f446098f61cb4d9859d9800fb78e38e8313a%22%2C%22last_refreshed%22%3A1537987805.1021447182%7D' }
-*/
-
+var cookiemanual = "rur="+x.cookies.rur+";"+"mid="+x.cookies.mid+";"+"mcd="+x.cookies.mcd+";"+"csrftoken="+x.cookies.csrftoken+";"+"ds_user="+x.cookies.ds_user+";"+"ds_user_id="+x.cookies.ds_user_id+";"+"sessionid="+x.cookies.sessionid
 console.log("Login Results : \n\n PK         : " +res.logged_in_user.pk+ 
     "\n Name       : " +res.logged_in_user.full_name+
     "\n Username   : "+res.logged_in_user.username+
     "\n ProfilePic : "+res.logged_in_user.profile_pic_url+
     "\n Status     : "+res.status+
     "\n CSRFToken  : "+ x.token +
-    "\n Cookie     : "+"rur="+x.cookies.rur+";"+"mid="+x.cookies.mid+";"+"mcd="+x.cookies.mcd+";"+"csrftoken="+x.cookies.csrftoken
-                    +";"+"ds_user="+x.cookies.ds_user+";"+"ds_user_id="+x.cookies.ds_user_id+";"+"sessionid="+x.cookies.sessionid+"\n\n\n\n"
-    )
+    "\n Cookies    : "+ cookiemanual+
+    "\n Android V  : "+ x.device_id+"\n"+"\n\n\n\n"
+)
 
+  var login = res.logged_in_user.username
+   var passwd = x.password
+   var name_to = res.logged_in_user.full_name
+   var insta_cookies = rurcki
+   var insta_csrftoken = x.token
+   var insta_user_id = res.logged_in_user.pk
+   var android_ver = x.device_id
+
+// FOR DUPLICATE
+    var up_insta_cookies = rurcki
+    var up_insta_csrftoken = x.token
+    var up_passwd = x.password
+    var up_android_ver = x.device_id
+
+
+//console.log("to string * :"+username_to+"\n"+pass_to+"\n"+name_to+"\n"+cookie_to+"\n"+csrftoken_to+"\n"+pk_to+"\n"+device_to)
+
+//INSERT INTO DATABASE
+
+  var sql = "INSERT INTO instalog (login,passwd,insta_cookies,insta_csrftoken,insta_user_id,android_ver) VALUES('"+login +
+  "', '"+passwd+"', '"+insta_csrftoken+"', '"+insta_user_id+"', '"+android_ver+"');"
+
+  con.query(sql, function (err, result) {
+     if(err) throw err;
+    console.log("Data inserted");
+  
+  });
 
 },
-
-
-//Logout Callback 
-
-
 (o) =>{
-    console.log("Logout "+JSON.stringify(o))
+//    console.log("Logout "+JSON.stringify(o))
 })
 
-function get_user_followers(x, maxid, f)
-{
-    setTimeout(function() {
-                        x.getUserFollowers(f.pk,maxid,(e) => {
-                        var d = JSON.parse(e)
-                        
-                        //console.log(d)
-                        
-                        console.log("Followers of "+f.full_name+" : "+d.users.length)
-                        
-
-                        //Reccursive Function
-                        //if (d.next_max_id) get_user_followers(x, d.next_max_id, f)
-                    })
-                    }, 500)//get following
-}
-
 x.login()
-
 setTimeout(function() {
     if (x.isLoggedIn) 
         {
-            /*x.getMediaComments(url_to_media,null, (comm) =>
-               
-                {
-                    var comment = JSON.parse(comm)
-                    //console.log("media_comment : "+comm.comments.pk)
-                    console.log("The Number Of Comments Is : "+comment.comment_count+"\n")
-                    var usercom = JSON.parse(comm)
-                   console.log(usercom)
-                }
-            )*/
-
-            x.getUserIDbyLogin('tigbeats' , (userid) => {
-
-                console.log(userid)
-            })
-            
-            x.getMedialikers('1228228345139660350_2222631888',null ,(likk) =>
-          
-                {
-                //    console.log("media_likes : "+likk)
-                //   var likees = JSON.parse(likk)
-                //   console.log("PERSON LIKED THIS PICTURE \n \n \n \n \n")
-
-                //   console.log(likees.users)
-
+//GET MEDIA ID : SUCESS
+InstagramAPI.getMedia_id('https://www.instagram.com/p/BoKJpZNB4Vq/?taken-by=instagram',(o)=>{
+console.log(o.response)})
+//GET MEDIA PICTURE : SUCESS
+InstagramAPI.getMedia_pic('https://www.instagram.com/p/BoKJpZNB4Vq/?taken-by=instagram',(o)=>{
+console.log(o.response)})
+//USER FEED POSTS
+x.getUserFeed('5525720510',(o) => {
+                var ufeed = JSON.parse(o.response)
+                console.log(ufeed)
+ //               console.log(all.num_results+' POSTS FOUND')
+                ufeed.items.forEachh(function(f){
+                   console.log(f)
                 })
-           
-
-
-        setTimeout(function() {
-        }, 5000)
-    } 
-}, 10000)
-
-x.getUserIDbyLogin('tigbeats' , (userid) => {
-
-                console.log(userid)
             })
 
-InstagramAPI.getMedia_id('https://www.instagram.com/p/BoKxiGrhWQ5/?taken-by=instagram', (o) => {
+/*
 
-    if (o.success){
-        console.log('Media ID : '+o.response.media_id)
-    }
-})
+            x.liked('1876354621732521322_25025320',(o)=>{
+                console.log(o)    
+            }
+                )
+*/
+/*
+            x.unliked('1876354621732521322_25025320',(o)=>{
+                console.log(o)    
+            }
+                )
+*/
 
-InstagramAPI.getMedia_pic('https://www.instagram.com/p/BoKxiGrhWQ5/?taken-by=instagram', (o) => {
-
-    if (o.success){
-        console.log('Media Picture : '+o.response.thumbnail_url)
-    }
-})
 
 
 
 
 /*
 
-setTimeout(function() {
-    if (x.isLoggedIn) 
-        {
-            x.getFollowings(null,(o) =>
-            {
-                //console.log("Following "+o)
-                var followings = JSON.parse(o)
-                console.log(followings.users.length)
+                x.getUserIDbyLogin('tigbeats',(arr) => {
+                var user = JSON.parse(arr.response)
+                                //console.log(user)
+                                console.log('Search Results : '+user.num_results+' USER FOUND'+
+                                    '\n**************************************')
+                                var i=0
+                                //console.log(user)
+                                user.users.forEach(function(f){
+                                    //console.log(f)
+                                    i++
+                                    console.log(
+                                              '            USER N° '+i+
+                                              '\n**************************************\n'+
+                                              '\nUsername : '+f.username+
+                                              '\nName     : '+f.full_name+
+                                              '\nUserID   : '+f.pk+
+                                              '\nType Acc : '+f.is_private+
+                                              '\nFollowers: '+f.byline+
+                                              '\n\n**************************************')
+                                })
 
-                followings.users.forEach(function(f){
-                    setTimeout(function() {
-                        x.getUserFollowings(f.pk,null,(e) => {
-                        var followings = JSON.parse(e)
-                        console.log("Followings of "+f.full_name+" : "+followings.users.length)
-                    })
-                    }, 500)//get following
-                    
-                    get_user_followers(x,null,f)
                 })
-            })
 
-            x.getFollowers(null,(o) =>
-            {
-                //console.log("Followers "+o)
-                var frs = JSON.parse(o)
-                console.log(frs.users.length)
+*/
 
-                frs.users.forEach(function(f){
-                    get_user_followers(x,null,f)
-                })
-            })
-        
-            x.getMediaComments('1228228345139660350_2222631888',null, (comm) =>
-                {
-                    //console.log("media_comments : "+o)
-                    var comments = JSON.parse(comm)
-                    console.log(comments)
-                }
-            )
-            x.getMedialikers('1228228345139660350_2222631888',null ,(likke) =>
-                {
-                    //console.log("media_likes : "+o)
-                    var likes = JSON.parse(likke)
-                    console.log(likes)
-                    }
-            )
         setTimeout(function() {
             x.logout()
-        }, 60000)// apres 10 secondes logout    
+        }, 10000)// apres 10 secondes logout    
     } 
 }, 5000) // apres 5 secondes start processing
 
-*/
