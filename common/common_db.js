@@ -8,8 +8,8 @@ function IGAPIDB(){
 	  connectionLimit : 10,
 	  host: "localhost",
 	  user: "instabot",
-	  password: "Instabot#2018",
-	  database: "insTig",
+	  password: "*******",
+	  database: "********",
 	  charset:  "utf8mb4_unicode_ci"
 	});
 
