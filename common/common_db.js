@@ -6,10 +6,10 @@ function IGAPIDB(){
 	const self = {}
 	var pool  = mysql.createPool({
 	  connectionLimit : 10,
-	  host: "localhost",
-	  user: "instabot",
-	  password: "*******",
-	  database: "********",
+	  host: "<HOSTNAME>",
+	  user: "<USERNAME>",
+	  password: "<PASSWORD>",
+	  database: "<DATABASE_NAME>",
 	  charset:  "utf8mb4_unicode_ci"
 	});
 
