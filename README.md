@@ -1,11 +1,13 @@
 # InstagramBot 
+***
 ![Plateform](https://img.shields.io/badge/platform-Linux%2FMacOS-red.svg) 
 ![InstagramBot](https://img.shields.io/badge/InstagramBot-V.1.0.0-yellow.svg?logo=instagram&style=V.1.1.0)
 ![NODEJSV.](https://img.shields.io/badge/Node.JS-V.8.10.0-green.svg?logo=Node.JS)
 
  A NodeJS wrapper for the Instagram Bot It works with instagram private api ,It has almost all the features the Instagram app.
- 
+
 ### Requirements
+***
  - [NodeJS](https://nodejs.org/en/download/)
  - [NPM](https://www.npmjs.com/get-npm)
  - [Mysql](https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/)
@@ -20,9 +22,9 @@
    - [body-parser](https://www.npmjs.com/package/body-parser)
    - [yargs](https://www.npmjs.com/package/yargs)
  
- 
-### Features
 
+### Features
+***
 * [Like](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js)/[unlike](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js) posts 
 * [Post](https://github.com/anouarbensaad/InstagramBot/blob/master/media/commentEngine.js)/[Delete](https://github.com/anouarbensaad/InstagramBot/blob/master/media/commentEngine.js) comments
 * [Like](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likecomEngine.js)/[unlike](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likecomEngine.js) comments
@@ -33,11 +35,11 @@
 * Get [User Info](https://github.com/anouarbensaad/InstagramBot/blob/master/feed/userfeed.js) / [Location](https://github.com/anouarbensaad/InstagramBot/blob/master/feed/locationfeed.js) & [More](https://github.com/anouarbensaad/InstagramBot/tree/master/feed) ..
 
 ### Installation
-
+***
 * Clone the repository. `https://github.com/anouarbensaad/InstagramBot` and switch into the directory `cd InstagramBot`
 
 ### Database Config.
-
+***
 
 Modify the database configuration file `common/common_db.js`
 
@@ -55,7 +57,7 @@ function IGAPIDB(){
 ```
 
 ### EDIT THE RANDOM TIME.
-
+***
 Change the temp at each action for you did not detect
 
 ```javascript
@@ -66,6 +68,7 @@ setTimeout(function()
 console.log('\x1b[93m%s\x1b[0m',"[~] Elapsed Time : "+_seconds+" seconds");
 ```
 
-### License
 
+### License
+***
 [MIT](LICENSE)
