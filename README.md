@@ -7,12 +7,12 @@
  
 ## Features
 
-* Like/unlike posts
-* Post/Delete comments
-* Like/unlike comments
-* Follow/unfollow users
-* Get Followers / Following
-* Get Likers From Media
+* Like(https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js)/unlike(https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js) posts 
+* Post/Delete(https://github.com/anouarbensaad/InstagramBot/blob/master/media/commentEngine.js) comments
+* Like/unlike(https://github.com/anouarbensaad/InstagramBot/blob/master/media/likecomEngine.js) comments
+* Follow/unfollow(https://github.com/anouarbensaad/InstagramBot/blob/master/freindship/followEngine.js) users
+* Get Followers(https://github.com/anouarbensaad/InstagramBot/blob/master/freindship/profileExtractor.js) / Following(https://github.com/anouarbensaad/InstagramBot/blob/master/freindship/profileExtractor.js)
+* Get Likers(https://github.com/anouarbensaad/InstagramBot/blob/master/media/mediaExtractor.js) From Media
 * Get Comments / Get User Tagged From Media.
 * Get User Info / Location & More ..
 
