@@ -1,6 +1,7 @@
 # InstagramBot 
 ![Plateform](https://img.shields.io/badge/platform-Linux%2FMacOS-red.svg) 
 ![InstagramBot](https://img.shields.io/badge/InstagramBot-V.1.0.0-yellow.svg?logo=instagram&style=V.1.1.0)
+![NODEJSV.](https://img.shields.io/badge/Node.JS-V.8.10.0-green.svg?logo=Node.JS)
 
  A NodeJS wrapper for the Instagram Bot It works with instagram private api ,It has almost all the features the Instagram app.
  
