@@ -5,19 +5,23 @@
 
  A NodeJS wrapper for the Instagram Bot It works with instagram private api ,It has almost all the features the Instagram app.
  
-#### Requirements
- * Install NodeJS
- * A
- ** a
- ** a
- ** a
- ** a
- ** a
- ** a
- * A
+### Requirements
+ - [NodeJS](https://nodejs.org/en/download/)
+ - [NPM](https://www.npmjs.com/get-npm)
+ - [Mysql](https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/)
+ - NPM_Packages :
+   - [colors](https://www.npmjs.com/package/github-colors)
+   - [fs](https://www.npmjs.com/package/fs)
+   - [mysql](https://www.npmjs.com/package/mysql)
+   - [querystring](https://www.npmjs.com/package/querystring)
+   - [request](https://www.npmjs.com/package/request)
+   - [utf8](https://www.npmjs.com/package/utf8)
+   - [uuid](https://www.npmjs.com/package/uuid)
+   - [body-parser](https://www.npmjs.com/package/body-parser)
+   - [yargs](https://www.npmjs.com/package/yargs)
  
  
-## Features
+### Features
 
 * [Like](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js)/[unlike](https://github.com/anouarbensaad/InstagramBot/blob/master/media/likeEngine.js) posts 
 * [Post](https://github.com/anouarbensaad/InstagramBot/blob/master/media/commentEngine.js)/[Delete](https://github.com/anouarbensaad/InstagramBot/blob/master/media/commentEngine.js) comments
@@ -28,10 +32,40 @@
 * Get [Comments](https://github.com/anouarbensaad/InstagramBot/blob/master/media/mediaExtractor.js) / Get [User Tagged](https://github.com/anouarbensaad/InstagramBot/blob/master/media/mediaExtractor.js) From Media.
 * Get [User Info](https://github.com/anouarbensaad/InstagramBot/blob/master/feed/userfeed.js) / [Location](https://github.com/anouarbensaad/InstagramBot/blob/master/feed/locationfeed.js) & [More](https://github.com/anouarbensaad/InstagramBot/tree/master/feed) ..
 
-#### Installation
+### Installation
 
 * Clone the repository. `https://github.com/anouarbensaad/InstagramBot` and switch into the directory `cd InstagramBot`
 
-## License
+### Database Config.
+
+
+Modify the database configuration file `common/common_db.js`
+
+```javascript
+function IGAPIDB(){
+	const self = {}
+	var pool  = mysql.createPool({
+	  connectionLimit : 10,
+	  host:     "<YOUR DB HOSTNAME | LOCALHOST>",
+	  user:     "<DB USERNAME>",
+	  password: "<DB PASSWORD>",
+	  database: "<DATABASE_NAME>",
+	  charset:  "utf8mb4_unicode_ci"
+	});
+```
+
+### EDIT THE RANDOM TIME.
+
+Change the temp at each action for you did not detect
+
+```javascript
+setTimeout(function()
+    {
+      processfollow(source_user,category,resdata,index+1,callback);
+    },Math.floor(Math.random()*('???'))+'???');
+console.log('\x1b[93m%s\x1b[0m',"[~] Elapsed Time : "+_seconds+" seconds");
+```
+
+### License
 
 [MIT](LICENSE)
