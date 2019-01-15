@@ -11,7 +11,7 @@
  - [NodeJS](https://nodejs.org/en/download/)
  - [NPM](https://www.npmjs.com/get-npm)
  - [Mysql](https://support.rackspace.com/how-to/installing-mysql-server-on-ubuntu/)
- - NPM_Packages :
+###### NPM_Packages :
    - [colors](https://www.npmjs.com/package/github-colors)
    - [fs](https://www.npmjs.com/package/fs)
    - [mysql](https://www.npmjs.com/package/mysql)
@@ -56,9 +56,9 @@ function IGAPIDB(){
 	});
 ```
 
-### EDIT THE RANDOM TIME.
+### Time Config.
 ***
-Change the temp at each action for you did not detect
+Change the time at each action for you did not detect
 
 ```javascript
 setTimeout(function()
@@ -68,6 +68,19 @@ setTimeout(function()
 console.log('\x1b[93m%s\x1b[0m',"[~] Elapsed Time : "+_seconds+" seconds");
 ```
 
+
+### Table of Contents
+***
+- [Connexion](https://github.com/anouarbensaad/InstagramBot/wiki)
+- [Media](https://github.com/anouarbensaad/InstagramBot/wiki)
+  - [Extract Likers](https://github.com/anouarbensaad/InstagramBot/wiki)/[Comments](https://github.com/anouarbensaad/InstagramBot/wiki)
+  - [Like/Unlike](https://github.com/anouarbensaad/InstagramBot/wiki)
+  - [Comment](https://github.com/anouarbensaad/InstagramBot/wiki)
+- [Freindship](https://github.com/anouarbensaad/InstagramBot/wiki)
+  - [Extract Followers/Following](https://github.com/anouarbensaad/InstagramBot/wiki)
+  - [Follow/Unfollow](https://github.com/anouarbensaad/InstagramBot/wiki)
+- [Feed](https://github.com/anouarbensaad/InstagramBot/wiki)
+- [Location](https://github.com/anouarbensaad/InstagramBot/wiki)
 
 ### License
 ***
