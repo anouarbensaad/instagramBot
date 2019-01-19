@@ -38,6 +38,10 @@
 ***
 * Clone the repository. `https://github.com/anouarbensaad/InstagramBot` and switch into the directory `cd InstagramBot`
 
+### EXAMPLE
+***
+![EXEMPLE](https://github.com/anouarbensaad/InstagramBot/blob/master/InstagramBot_Exemple.jpg)
+
 ### Database Config.
 ***
 
