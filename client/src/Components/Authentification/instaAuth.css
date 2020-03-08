@@ -1,0 +1,461 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+body {
+font-family: 'Montserrat', sans-serif;
+background: #ecf0f3;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: -20px 0 50px;
+    margin-top: -20px;
+margin-top: 20px;
+            }
+
+#container {
+    background: #fff;
+    border-top-right-radius: 50px;
+    box-shadow: 0 14px 28px #d3d9de, 0 10px 10px #d3d9de;
+    position: relative;
+    overflow: hidden;
+/*    width: 90%;*/
+    min-height: 70%;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.container {
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 14px 28px #d3d9de, 0 10px 10px #d3d9de;
+    position: relative;
+    overflow: hidden;
+    width: 1700px;
+    /*max-width: 100%;*/
+    max-height: 870px;
+}
+
+.sss-container {
+    background: #edf4f7;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    min-height: 100%;
+}
+
+label {
+    margin-inline: auto;
+    padding: 10px;
+    left: 50%;
+    margin-right: revert;
+}
+
+
+
+.login-card {
+    width: 84%;
+    min-height: 460px;
+    margin: auto;
+    box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 475px;
+    position: relative;
+}
+.wrapper1 {
+    width: 100%;
+    height: auto;
+    padding: 40px 0px;
+    padding-top: 35px;
+    display: flex;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+	h1 {
+		font-weight: bold;
+		margin: 0;
+		font-size: 45px;
+	}
+	
+	p {
+		font-size: 14px;
+		font-weight: 100;
+		line-height: 20px;
+		letter-spacing: .5px;
+		margin: 20px 0 30px;
+	}
+	
+	span {
+    	font-size: 15px;
+    	padding: 10px;
+    	color: #b9cad3;
+	}
+	
+	a {
+		color: #333;
+		font-size: 14px;
+		text-decoration: none;
+		margin: 15px 0;
+	}
+	
+
+	
+	.form-container form {
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		padding:  0 50px;
+		height: 120%;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	
+	.form-container input {
+		background: #ecf0f3;
+		border: none;
+		padding: 12px 15px;
+		margin: 8px 0;
+		width: 100%;
+		border-radius: 25px;
+	}
+	
+    input[type="submit"] {
+		border-radius: 20px;
+		border: 1px solid #a1cef8;
+		background: #3897f1;
+		color: #fff;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 12px 45px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: transform 80ms ease-in;
+		margin: 15px;
+	}
+	
+    input[type="submit"]:active {
+		transform: scale(.95);
+	}
+	
+    input[type="submit"]:focus {
+		outline: none;
+	}
+	
+    input[type="submit"].ghost {
+		background: transparent;
+		border-color: #fff;
+	}
+	
+	.form-container {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		transition: all .6s ease-in-out;
+	}
+	
+	.sign-in-container {
+		left: 50px;
+		width: 80%;
+		z-index: 2;
+		height: 80%;
+	}
+	
+	.sign-up-container {
+		left: 0;
+		width: 50%;
+		z-index: 1;
+		opacity: 0;
+	}
+	
+
+	
+	/* Move signin to right */
+	.container.right-panel-active .sign-in-container {
+		transform: translateY(100%);
+    }
+    
+
+    body
+    {
+        margin: 0;
+        padding: 0;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    
+    input[type="checkbox"]
+    {
+        -webkit-appearance: none;
+        display: none;
+        visibility: hidden;
+    }
+    
+    .check {
+        position: relative;
+        display: block;
+        width: 40px;
+        height: 20px;
+        background: #3897f1;
+        cursor: pointer;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: ease-in 0.5s;
+        box-shadow: 1px 0px 19px #e4f1fd;
+    }
+    
+    input[type="checkbox"]:checked ~ .check
+    {
+        background: #fff;
+        box-shadow: 0 0 0 1200px #ffea0b69;
+    
+    }
+    
+    .check:before
+    {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        background: #fff;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+    
+    }
+    
+    
+    input[type="checkbox"]:checked ~ .check:before
+    {
+    
+        transform: translateX(-50px);
+    }
+    
+    .check:after
+    {
+        content: '';
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: #092c3e;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        transition: 0.5s;
+        transform: translateX(50px);
+    }
+    
+    
+    input[type="checkbox"]:checked ~ .check:after
+    {
+    
+        transform: translateX(0px);
+    }
+    .isa_error {
+        font-size: 13px;
+        padding: 10px;
+        color: #ff004bb3;
+        border-radius: 10px;
+    }
+
+    .nav-container {
+        top: 0;
+        table-layout: fixed;
+        display: table;
+        padding-left: 30px;
+        padding-right: 30px;
+        word-spacing: -2em;
+        left: 50px;
+        width: 100%;
+        z-index: 2;
+        height: 10%;
+        padding: 15px;
+    }
+    
+    
+    .nav-container ul {
+        width: 100%;
+        display: table;
+        word-spacing: -2em;
+    }
+    
+    .nav-container ul > li {
+        font-size: 16px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 20px 20px;
+            margin-left: 20px;
+    }
+
+    
+    .nav-menu {
+        width: 100%;
+        display: table-cell !important;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    
+    .btns-wrapper {
+        width: 35%;
+        display: table-cell;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+    
+    .btns-wrapper label {
+        display: inline-block;
+        padding: 10px 18px 9px;
+        border-radius: 4px;
+        margin-left: 0px;
+        margin-right: 0px;}
+
+        .logo {
+            width: 23%;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+
+    .acc-btn-menu{
+        width: 15%;
+display: table-cell;
+vertical-align: middle;
+    }
+
+
+
+.AVATAR-ACC-BTN{
+    width: 50px;
+height: 50px;
+border-radius: 50%;
+}
+
+/* total width */
+::-webkit-scrollbar {
+    background-color:#fff;
+    width:16px
+}
+
+/* background of the scrollbar except button or resizer */
+::-webkit-scrollbar-track {
+    background-color:#fff
+}
+
+/* scrollbar itself */
+::-webkit-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border:4px solid #fff;
+    height: 40px;
+}
+
+/* set button(top and bottom of the scrollbar) */
+::-webkit-scrollbar-button {display:none}
+
+
+.fa {
+    font-size: 22px;
+}
+
+
+.acc-btn-menu-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+  
+  .acc-btn-menu:hover .acc-btn-menu-content {
+    display: block;
+  }
+
+
+
+
+
+  div.dropdown-btn-menu {
+    color: #555;
+    margin: 3px -22px 0 0;
+    width: 143px;
+    position: relative;
+    height: 17px;
+    text-align:left;
+    }
+    div.acc-btn-menu-content
+    {
+    position: absolute;
+    z-index: 100;
+    width: 135px;
+    display: none;
+    margin-left: 10px;
+    padding: 40px 0 5px;
+    border-radius: 6px;
+    }
+    .dropdown-btn-menu  li a {
+    color: #555555;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+    cursor: pointer;
+    text-decoration:none;
+    }
+    .dropdown-btn-menu li a:hover{
+    background:#155FB0;
+    color: #FFFFFF;
+    text-decoration: none;
+    }
+    a.account {
+    font-size: 11px;
+    line-height: 16px;
+    color: #555;
+    position: absolute;
+    z-index: 110;
+    display: block;
+    padding: 11px 0 0 20px;
+    height: 28px;
+    width: 121px;
+    margin: -11px 0 0 -10px;
+    text-decoration: none;
+
+    cursor:pointer;
+    }
+    .avatar-root
+    {
+    list-style: none;
+    font-size: 11px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    background: #fff;
+    padding: 10px 0 10px 0;
+    border-radius: 5px 5px 5px 5px;
+    margin: 21px 0 0 0;
+    }
+    .avatar-root:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: #ffffff;
+    position: absolute;
+    color: #ffffff;
+    top: 54px;
+    left: 17px;
+    }
+

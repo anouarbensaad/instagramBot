@@ -1,0 +1,489 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./dayornightmode.css">
+    
+        <style>
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+            
+body {
+font-family: 'Montserrat', sans-serif;
+background: #ecf0f3;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: -20px 0 50px;
+    margin-top: -20px;
+margin-top: 20px;
+            }
+
+            #container {
+    background: #fff;
+    border-top-right-radius: 30px;
+    box-shadow: 0 14px 28px #d3d9de, 0 10px 10px #d3d9de;
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    min-height: 70%;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+border-bottom-left-radius: 30px;
+}
+
+
+.logo {
+    width: 23%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sss-container {
+    background: #edf4f7;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    min-height: 100%;
+}
+.nav-container.header-container {
+    left: 50px;
+    width: 80%;
+    z-index: 2;
+    height: 10%;
+}
+label {
+    margin-inline: auto;
+    padding: 10px;
+    left: 50%;
+    margin-right: revert;
+}
+
+
+
+.profile-card {
+    width: 80%;
+    min-height: 460px;
+    margin: auto;
+    box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    position: relative;
+}
+.wrapper {
+    width: 30%;
+    height: auto;
+    padding: 40px 0px;
+    padding-top: 35px;
+    display: flex;
+}
+.profile-card {
+    width: 75%;
+min-height: 300px;
+margin: auto;
+box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+background: #fff;
+border-radius: 12px;
+max-width: 700px;
+position: relative;
+}
+* {
+    box-sizing: border-box;
+}
+
+.profile-card__img {
+    width: 90px;
+    height: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 40px;
+}
+
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+        border-top-color: currentcolor;
+        border-top-style: none;
+        border-top-width: 0px;
+    border-top: 2px solid #edf4f7;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.profile-card__cnt {
+    margin-top: 20px;
+    text-align: center;
+    padding: 0 20px;
+    padding-bottom: 40px;
+    transition: all .3s;
+}
+
+.profile-card__name {
+    font-weight: 700;
+    font-size: 25px;
+    color: #212121;
+    margin-bottom: 10px;
+}
+.profile-card__txt {
+    font-size: 16px;
+    font-weight: 500;
+    color: #abbeca;
+    margin-bottom: 15px;
+}
+.profile-card-loc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+}
+.profile-card-inf {
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8px;
+    display: inline-flex;
+    font-size: 15px;
+}
+.profile-card-inf__item {
+min-width: 100px;
+display: block;
+}
+.profile-card-inf__title {
+    font-weight: 500;
+    font-size: 23px;
+    color: #171717;
+}
+.profile-card-inf__txt {
+    font-weight: 500;
+    margin-top: 10px;
+    color: #abbeca;
+}
+
+
+.nav-container {
+    top: 0;
+    table-layout: fixed;
+    display: table;
+    padding-left: 30px;
+    padding-right: 30px;
+    word-spacing: -2em;
+    left: 50px;
+    width: 80%;
+    z-index: 2;
+    height: 10%;
+}
+
+
+.nav-container ul {
+    width: 100%;
+    display: table;
+    word-spacing: -2em;
+}
+
+.nav-container ul > li {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+        margin-left: 20px;
+}
+
+.nav-container ul > li > a {
+    position: relative;
+    display: inline-block;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.nav-menu {
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+.btns-wrapper {
+    width: 257px;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.btns-wrapper label {
+    display: inline-block;
+    padding: 10px 18px 9px;
+    border-radius: 4px;
+    margin-left: 20px;
+    margin-right: 20px;}
+
+
+
+        </style>
+        
+
+		<title> day/night checkbox </title>
+	</head>
+	<body>
+        <div class="container" id="container">
+            <div class="nav-container headers-container">
+                <div class="logo">
+                    <a href="/" title="Iconosquare Pro" class="logo-icono">
+                        <i class="nav-logo-icon icon-iconosquare nav-short-padding"></i>
+                        <span>iconosquare</span>
+                    </a>
+                        <i class="nav-logo-icon icon-iconosquare nav-short-padding"></i>
+                    <span>iconosquare</span>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="visible-tablet ">
+                        <a href="/about" class="nav-link" title="About">
+                            About                </a>
+                    </li>
+                    <li class="visible-tablet ">
+                        <a href="/about" class="nav-link" title="About">
+                            About                </a>
+                    </li>
+
+                    <li class="visible-tablet ">
+                        <a href="/about" class="nav-link" title="About">
+                            About                </a>
+                    </li>
+                    <li class="visible-tablet ">
+                        <a href="/about" class="nav-link" title="About">
+                            About                </a>
+                    </li>
+                </ul>
+                <div id="js-btns" class="btns-wrapper">
+                    <a href="/signin" class="log-in" title="Log in">Log in</a>
+
+                    <label> 
+                        <input type="checkbox">
+                        <span class="check"> </span>
+                    </label>
+                    <a href="javascript:void(0);" class="nav-link js-language" data-tippy="">EN</a>
+                </div>
+
+                <div class="acc-btn-menu">
+                    <img class="AVATAR-ACC-BTN" src="https://instagram.ftun3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/43395549_1638642019569814_4565983791121694720_n.jpg" alt="profile card">
+                </div>
+
+
+            </div>
+
+
+
+        <div class=" sss-container">
+            <div class=" profile-container">
+
+
+                <div class="wrapper">
+
+  
+                    <div class="profile-card js-profile-card">
+                      <div class="profile-card__img">
+                        <img src="https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg" alt="profile card">
+                      </div>
+                  
+                      <div class="profile-card__cnt js-profile-cnt">
+                        <div class="profile-card__name">Muhammed Erdem</div>
+                        <div class="profile-card__txt">Front-end Developer from </div>
+                        <div class="profile-card-loc">
+                        </div>
+                  
+
+
+                    <hr>
+                        <div class="profile-card-inf">
+                  
+                          <div class="profile-card-inf__item">
+                            <div class="profile-card-inf__title">215</div>
+                            <div class="profile-card-inf__txt">Posts</div>
+                          </div>
+
+                          <div class="profile-card-inf__item">
+                            <div class="profile-card-inf__title">89K</div>
+                            <div class="profile-card-inf__txt">Followers</div>
+                          </div>
+
+                          <div class="profile-card-inf__item">
+                            <div class="profile-card-inf__title">190</div>
+                            <div class="profile-card-inf__txt">Following</div>
+                          </div>
+                  
+
+                        </div>
+                  
+
+
+                        
+            
+            </div>
+            
+        </div>
+
+        <style>
+
+            .folldiv {
+                align-items: center;
+                display: flex;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                min-height: 40px;
+                padding: 12px 16px 13px;
+                position: relative;
+            }
+            
+            
+            .ffavatarwrap {
+                display: inline-block;
+            }
+            
+            .ffavatar {
+                -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                align-self: center;
+                display: block;
+                -webkit-box-flex: 0;
+                -webkit-flex: none;
+                -ms-flex: none;
+                flex: none;
+            }
+            
+            .ffpicavatar {
+                height: auto;
+                border-radius: 100%;
+                width: 40px;
+            }
+            
+            .fftext {
+                color: #262626;
+                color: rgba(var(--i1d,38,38,38),1);
+                display: block;
+                -webkit-box-flex: 1;
+                -webkit-flex: 1 0 0%;
+                -ms-flex: 1 0 0%;
+                flex: 1 0 0%;
+                line-height: 1.3;
+                margin: 0 12px;
+                min-width: 0;
+                word-wrap: break-word;
+            }
+            
+            .namelink {
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding-left: 5px;
+                margin-left: -5px;
+            }
+            
+            .ffnamelink, .ffnamelink:visited {
+                color: #262626;
+                color: rgba(var(--i1d,38,38,38),1);
+                font-weight: 600;
+            }
+            
+            .ffname a, a:visited {
+                text-decoration: none;
+            }
+            
+            
+            .ffaction {
+                color: #999;
+                color: rgba(var(--f52,153,153,153),1);
+                margin-left: 5px;
+            }
+            
+            .fftime {
+                font-size: 15px;
+                line-height: 18px;
+            }
+            .ffwrapper {
+                width: 30%;
+                height: auto;
+                padding: 40px 0px;
+                    padding-top: 40px;
+                padding-top: 35px;
+                display: flex;
+            }
+            .followengine {
+                flex-direction: column;
+                padding-bottom: 0px;
+                padding-top: 0px;
+                width: 21%;
+                min-height: 300px;
+                margin: auto;
+                box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+                background: #fff;
+                border-radius: 12px;
+                max-width: 700px;
+                position: relative;
+            }
+            </style>
+
+
+            
+            
+            
+            
+            
+            </div>
+        </div class="ffwrapper">
+            <div class="followengine" style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+                <div class="folldiv">
+                    <div class="ffavatardiv">
+                        <div class="ffavatarwrap">
+                            <div class="ffavatar" role="button" tabindex="0">
+                                    <img alt="ines_achour_09's profile picture" class="ffpicavatar" src="https://instagram.ftun11-1.fna.fbcdn.net/v/t51.2885-19/s150x150/61801585_498936527312874_1008426194745425920_n.jpg?_nc_ht=instagram.ftun11-1.fna.fbcdn.net&amp;_nc_ohc=6hUdEjsW28YAX8LkT7s&amp;oh=3f0515253ee278698ac7643aadec562c&amp;oe=5E871F13">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fftext">
+                        follow.
+                        <div class="ffname">
+                            <a class="namelink notranslate  ffnamelink" title="ines_achour_09" href="/ines_achour_09/">ines_achour_09</a>
+                        </div>
+    
+                        <time class="ffaction fftime" datetime="2020-01-01T14:33:43.045Z" title="Jan 1, 2020">8w</time>
+                    </div>
+                </div>
+            
+                <div class="folldiv">
+                    <div class="ffavatardiv">
+                        <div class="ffavatarwrap">
+                            <div class="RR-M-" role="button" tabindex="0">
+                                    <img alt="ines_achour_09's profile picture" class="ffpicavatar" src="https://instagram.ftun11-1.fna.fbcdn.net/v/t51.2885-19/s150x150/61801585_498936527312874_1008426194745425920_n.jpg?_nc_ht=instagram.ftun11-1.fna.fbcdn.net&amp;_nc_ohc=6hUdEjsW28YAX8LkT7s&amp;oh=3f0515253ee278698ac7643aadec562c&amp;oe=5E871F13">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fftext">
+                        <div class="ffname">
+                            <a class="namelink notranslate  ffnamelink" title="ines_achour_09" href="/ines_achour_09/">ines_achour_09</a>
+                        </div>
+                            started following you.
+                        <time class="ffaction fftime" datetime="2020-01-01T14:33:43.045Z" title="Jan 1, 2020">8w</time>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+   
+	</body>
+</html>

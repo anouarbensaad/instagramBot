@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+            
+
+.wrapper2 {
+    width: 30%;
+    height: auto;
+    padding: 8px 0px;
+    padding-top: 20px;
+    display: flex;
+}
+
+
+.profile-card {
+    width: 65%;
+    min-height: 325px;
+    margin: auto;
+    box-shadow: 0px 26px 19px -15px rgba(13, 28, 39, 0.15);
+    background: #fff;
+    border-radius: 15px;
+    max-width: 700px;
+    position: relative;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+.profile-card__img {
+    width: 90px;
+    height: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    position: relative;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+        border-top-color: currentcolor;
+        border-top-style: none;
+        border-top-width: 0px;
+    border-top: 2px solid #edf4f7;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.profile-card__cnt {
+    margin-top: 20px;
+    text-align: center;
+    padding: 0 0px;
+    padding-bottom: 20px;
+    transition: all .3s;
+}
+
+.profile-card__name {
+    font-weight: 700;
+    font-size: 25px;
+    color: #212121;
+    margin-bottom: 10px;
+}
+.profile-card__txt {
+    font-size: 16px;
+    font-weight: 500;
+    color: #abbeca;
+    margin-bottom: 15px;
+}
+.profile-card__token {
+    font-size: 12px;
+    font-weight: 500;
+    color: #abbeca;
+    margin-bottom: 15px;
+}
+.profile-card-loc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+}
+.profile-card-inf {
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8px;
+    display: inline-flex;
+    font-size: 15px;
+}
+.profile-card-inf__item {
+min-width: 100px;
+display: block;
+}
+.profile-card-inf__title {
+    font-weight: 500;
+    font-size: 23px;
+    color: #171717;
+}
+.profile-card-inf__txt {
+    letter-spacing: 0px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #abbeca;
+}
+
+.profile-avatar-pic {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 40px;
+}
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+
+.btn-getted{
+    background: #e9f4ff;
+    padding: 12px;
+    border-radius: 10px;
+    color: #0082ff;
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    font-size: 12px;
+}
+
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
