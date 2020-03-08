@@ -1,0 +1,298 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./dayornightmode.css">
+    
+        <style>
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+            
+body {
+font-family: 'Montserrat', sans-serif;
+background: #ecf0f3;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: -20px 0 50px;
+    margin-top: -20px;
+margin-top: 20px;
+            }
+
+            #container {
+    background: #fff;
+    border-top-right-radius: 30px;
+    box-shadow: 0 14px 28px #d3d9de, 0 10px 10px #d3d9de;
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    min-height: 70%;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+border-bottom-left-radius: 30px;
+}
+
+.nav-container.header-container {
+    left: 50px;
+    width: 80%;
+    z-index: 2;
+    height: 10%;
+}
+
+.sss-container {
+    background: #edf4f7;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    min-height: 100%;
+}
+.nav-container.header-container {
+    left: 50px;
+    width: 80%;
+    z-index: 2;
+    height: 10%;
+}
+label {
+    margin-inline: auto;
+    padding: 10px;
+    left: 50%;
+    margin-right: revert;
+}
+
+
+
+.profile-card {
+    width: 84%;
+    min-height: 460px;
+    margin: auto;
+    box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    position: relative;
+}
+.wrapper {
+    width: 100%;
+    height: auto;
+    padding: 40px 0px;
+    padding-top: 35px;
+    display: flex;
+}
+.profile-card {
+    width: 84%;
+    min-height: 460px;
+    margin: auto;
+    box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    position: relative;
+}
+* {
+    box-sizing: border-box;
+}
+
+.profile-card__img {
+    width: 90px;
+    height: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 40px;
+}
+
+.profile-card {
+    margin: auto;
+    box-shadow: 0px 13px 30px -10px rgba(13, 28, 39, 0.31);
+    background: #fff;
+    position: relative;
+    width: 491px;
+    max-width: 100%;
+    min-height: 540px;
+    border-radius: 30px;
+}
+
+
+	body {
+		font-family: 'Montserrat', sans-serif;
+		background: #ecf0f3;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		margin: -20px 0 50px;
+			margin-top: 20px;
+	}
+	
+	h1 {
+		font-weight: bold;
+		margin: 0;
+		font-size: 45px;
+	}
+	
+	p {
+		font-size: 14px;
+		font-weight: 100;
+		line-height: 20px;
+		letter-spacing: .5px;
+		margin: 20px 0 30px;
+	}
+	
+	span {
+    	font-size: 15px;
+    	padding: 10px;
+    	color: #b9cad3;
+	}
+	
+	a {
+		color: #333;
+		font-size: 14px;
+		text-decoration: none;
+		margin: 15px 0;
+	}
+	
+	.container {
+		background: #fff;
+		border-radius: 30px;
+		box-shadow: 0 14px 28px #d3d9de, 0 10px 10px #d3d9de;
+		position: relative;
+		overflow: hidden;
+		width: 491px;
+		max-width: 100%;
+		min-height: 540px;
+	}
+	
+	.form-container form {
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		padding:  0 50px;
+		height: 120%;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	
+	
+	.form-container input {
+		background: #ecf0f3;
+		border: none;
+		padding: 12px 15px;
+		margin: 8px 0;
+		width: 100%;
+		border-radius: 25px;
+	}
+	
+	button {
+		border-radius: 20px;
+		border: 1px solid #a1cef8;
+		background: #3897f1;
+		color: #fff;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 12px 45px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: transform 80ms ease-in;
+		margin: 15px;
+	}
+	
+	button:active {
+		transform: scale(.95);
+	}
+	
+	button:focus {
+		outline: none;
+	}
+	
+	button.ghost {
+		background: transparent;
+		border-color: #fff;
+	}
+	
+	.form-container {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		transition: all .6s ease-in-out;
+	}
+	
+	.sign-in-container {
+		left: 50px;
+		width: 80%;
+		z-index: 2;
+		height: 80%;
+	}
+	
+	.sign-up-container {
+		left: 0;
+		width: 50%;
+		z-index: 1;
+		opacity: 0;
+	}
+	
+
+	
+	/* Move signin to right */
+	.container.right-panel-active .sign-in-container {
+		transform: translateY(100%);
+	}
+
+
+        </style>
+        
+
+		<title> day/night checkbox </title>
+	</head>
+	<body>
+        <div class="container" id="container">
+            <div class="nav-container headers-container">
+		        <label> 
+			        <input type="checkbox">
+			        <span class="check"> </span>
+                </label>
+            </div>
+
+
+
+        <div class=" sss-container">
+            <div class=" profile-container">
+
+
+                <div class="wrapper">
+
+  
+                    <div class="profile-card js-profile-card">
+                            <div class="form-container sign-in-container">
+                                <form action="auth" method="POST">
+                                    <h1>Sign in</h1>
+                                    <span>use your instagram account</span>
+                                    <input type="text" name="username" placeholder="Username" required>
+                                    <input type="password" name="password" placeholder="Password" required>
+                                    <button>Sign In</button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                  
+
+                        </div>
+                  
+            
+            </div>
+            
+        </div>
+    </div> 
+   
+	</body>
+</html>
