@@ -13,7 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "crypto": "^1.0.1",
-    "date-and-time": "^0.6.3",
+    "date-and-time": "^0.14.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "http-proxy-middleware": "^1.0.0",
